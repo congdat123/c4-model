@@ -1,0 +1,104 @@
+@startuml(id=ComponentsApiApplication)
+title Online Food Ordering System - API Application - Components
+
+skinparam {
+  shadowing false
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+hide stereotype
+top to bottom direction
+skinparam rectangle<<23>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+skinparam rectangle<<13>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+skinparam rectangle<<24>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+skinparam rectangle<<25>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+skinparam rectangle<<26>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+skinparam rectangle<<27>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+skinparam rectangle<<5>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+skinparam rectangle<<28>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+skinparam rectangle<<29>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+skinparam rectangle<<30>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+skinparam database<<21>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+rectangle "==Admin Application\n<size:10>[Container: JS and VueJS]</size>\n\nInformation management" <<13>> as 13
+database "==Database\n<size:10>[Container: SQL Server]</size>\n\nStores user registration information, hashed authentication credentials, access logs, etc.'SQL Server Database' 'Database'" <<21>> as 21
+rectangle "==Web Application\n<size:10>[Container: apache]</size>\n\nDelivers the static content and the online ordering single-page application. 'JS and VueJS'" <<5>> as 5
+package "API Application\n[Container: C# and ASP.NET Core]" {
+  rectangle "==Bill Controller\n<size:10>[Component: ASP.NET Core Rest Controller]</size>\n\nOder data processing" <<29>> as 29
+  rectangle "==Cart Controller\n<size:10>[Component: ASP.NET Core Rest Controller]</size>\n\nCart data processing" <<30>> as 30
+  rectangle "==Customer Controller\n<size:10>[Component: ASP.NET Core Rest Controller]</size>\n\nCustomer data processing" <<23>> as 23
+  rectangle "==New Controller\n<size:10>[Component: ASP.NET Core Rest Controller]</size>\n\nRestaurant information processing" <<24>> as 24
+  rectangle "==Notification Controller\n<size:10>[Component: ASP.NET Core Rest Controller]</size>\n\nNotification data processing" <<28>> as 28
+  rectangle "==Product Controller\n<size:10>[Component: ASP.NET Core Rest Controller]</size>\n\nProduct data processing" <<27>> as 27
+  rectangle "==Sign In Controller\n<size:10>[Component: ASP.NET Core Rest Controller]</size>\n\nAllow user to log into the online food ordering system" <<25>> as 25
+  rectangle "==Slider Controller\n<size:10>[Component: ASP.NET Core Rest Controller]</size>\n\nSlider data processing" <<26>> as 26
+}
+13 .[#707070,thickness=2].> 30 : "Makes API calls to\n<size:8>[HTTP]</size>"
+13 .[#707070,thickness=2].> 23 : "Makes API calls to\n<size:8>[HTTP]</size>"
+13 .[#707070,thickness=2].> 24 : "Makes API calls to\n<size:8>[HTTP]</size>"
+13 .[#707070,thickness=2].> 28 : "Makes API calls to\n<size:8>[HTTP]</size>"
+13 .[#707070,thickness=2].> 27 : "Makes API calls to\n<size:8>[HTTP]</size>"
+13 .[#707070,thickness=2].> 25 : "Makes API calls to\n<size:8>[HTTP]</size>"
+13 .[#707070,thickness=2].> 26 : "Makes API calls to\n<size:8>[HTTP]</size>"
+29 .[#707070,thickness=2].> 21 : "Read from and Write to"
+30 .[#707070,thickness=2].> 21 : "Read from and Write to"
+23 .[#707070,thickness=2].> 21 : "Read from and Write to"
+24 .[#707070,thickness=2].> 21 : "Read from and Write to"
+28 .[#707070,thickness=2].> 21 : "Read from and Write to"
+27 .[#707070,thickness=2].> 21 : "Read from and Write to"
+25 .[#707070,thickness=2].> 21 : "Read from and Write to"
+26 .[#707070,thickness=2].> 21 : "Read from and Write to"
+5 .[#707070,thickness=2].> 29 : "Makes API calls to\n<size:8>[HTTP]</size>"
+5 .[#707070,thickness=2].> 30 : "Makes API calls to\n<size:8>[HTTP]</size>"
+5 .[#707070,thickness=2].> 23 : "Makes API calls to\n<size:8>[HTTP]</size>"
+5 .[#707070,thickness=2].> 24 : "Makes API calls to\n<size:8>[HTTP]</size>"
+5 .[#707070,thickness=2].> 28 : "Makes API calls to\n<size:8>[HTTP]</size>"
+5 .[#707070,thickness=2].> 27 : "Makes API calls to\n<size:8>[HTTP]</size>"
+5 .[#707070,thickness=2].> 25 : "Makes API calls to\n<size:8>[HTTP]</size>"
+5 .[#707070,thickness=2].> 26 : "Makes API calls to\n<size:8>[HTTP]</size>"
+@enduml

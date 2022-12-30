@@ -1,0 +1,70 @@
+@startuml(id=ComponentsAdminApplication)
+title Online Food Ordering System - Admin Application - Components
+
+skinparam {
+  shadowing false
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+hide stereotype
+top to bottom direction
+skinparam rectangle<<22>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+skinparam rectangle<<14>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+skinparam rectangle<<15>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+skinparam rectangle<<16>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+skinparam rectangle<<17>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+skinparam rectangle<<18>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+skinparam rectangle<<19>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+skinparam rectangle<<20>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+rectangle "==API Application\n<size:10>[Container: C# and ASP.NET Core]</size>\n\nProvides of online odering system functionality via /HTTPS API.'C# and ASP.NET core'" <<22>> as 22
+package "Admin Application\n[Container: JS and VueJS]" {
+  rectangle "==Account View Admin\n<size:10>[Component: VueJS]</size>\n\nCustomer data processing" <<14>> as 14
+  rectangle "==Bill View Admin\n<size:10>[Component: VueJS]</size>\n\nCustomer data processing" <<19>> as 19
+  rectangle "==Login View Admin\n<size:10>[Component: VueJS]</size>\n\nCustomer data processing" <<15>> as 15
+  rectangle "==New View Admin\n<size:10>[Component: VueJS]</size>\n\nCustomer data processing" <<20>> as 20
+  rectangle "==Product View Admin\n<size:10>[Component: VueJS]</size>\n\nCustomer data processing" <<17>> as 17
+  rectangle "==Register View Admin\n<size:10>[Component: VueJS]</size>\n\nCustomer data processing" <<16>> as 16
+  rectangle "==Slide View Admin\n<size:10>[Component: VueJS]</size>\n\nCustomer data processing" <<18>> as 18
+}
+14 .[#707070,thickness=2].> 22 : "Makes API calls to\n<size:8>[HTTP]</size>"
+19 .[#707070,thickness=2].> 22 : "Makes API calls to\n<size:8>[HTTP]</size>"
+15 .[#707070,thickness=2].> 22 : "Makes API calls to\n<size:8>[HTTP]</size>"
+20 .[#707070,thickness=2].> 22 : "Makes API calls to\n<size:8>[HTTP]</size>"
+17 .[#707070,thickness=2].> 22 : "Makes API calls to\n<size:8>[HTTP]</size>"
+16 .[#707070,thickness=2].> 22 : "Makes API calls to\n<size:8>[HTTP]</size>"
+18 .[#707070,thickness=2].> 22 : "Makes API calls to\n<size:8>[HTTP]</size>"
+@enduml

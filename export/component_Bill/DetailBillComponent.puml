@@ -1,0 +1,51 @@
+@startuml(id=DetailBillComponent)
+title Online Food Ordering System - API Application - Components
+
+skinparam {
+  shadowing false
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+hide stereotype
+top to bottom direction
+skinparam rectangle<<36>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+skinparam rectangle<<30>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+skinparam rectangle<<31>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+skinparam rectangle<<10>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+skinparam database<<43>> {
+  BackgroundColor #08427b
+  FontColor #ffffff
+  BorderColor #052e56
+}
+database "==Database\n<size:10>[Container: SQL Server 2019]</size>\n\nStores data customer states" <<43>> as 43
+package "API Application\n[Container: C# and ASP.NET core]" {
+  rectangle "==Bill Controller\n<size:10>[Component: ASP.NET Core Rest Controller]</size>\n\nProvide API interface Cart" <<30>> as 30
+  rectangle "==Bill Model\n<size:10>[Component: ASP.NET Core Rest Model]</size>\n\nProvide data model of bill and interfce to database" <<31>> as 31
+  rectangle "==Service\n<size:10>[Component: ASP.NET Core Rest Service]</size>\n\nHanding when called" <<36>> as 36
+}
+package "Web Application\n[Container: JS and VueJS]" {
+  rectangle "==Biill Detail View\n<size:10>[Component: VueJS and JS]</size>\n\nRun application code Bill Detail Browser" <<10>> as 10
+}
+10 .[#707070,thickness=2].> 30 : "Makes API calls to\n<size:8>[HTTP]</size>"
+30 .[#707070,thickness=2].> 36 : "Mapping Route get Bill By Customer ID"
+31 .[#707070,thickness=2].> 43 : "Read from and Write to"
+36 .[#707070,thickness=2].> 31 : "Call"
+@enduml

@@ -1,0 +1,51 @@
+@startuml(id=UpdateProfileUserComponent)
+title Online Food Ordering System - API Application - Components
+
+skinparam {
+  shadowing false
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+hide stereotype
+top to bottom direction
+skinparam rectangle<<24>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+skinparam rectangle<<36>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+skinparam rectangle<<26>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+skinparam rectangle<<6>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+skinparam database<<43>> {
+  BackgroundColor #08427b
+  FontColor #ffffff
+  BorderColor #052e56
+}
+database "==Database\n<size:10>[Container: SQL Server 2019]</size>\n\nStores data customer states" <<43>> as 43
+package "API Application\n[Container: C# and ASP.NET core]" {
+  rectangle "==Customer Controller\n<size:10>[Component: ASP.NET Core Rest Controller]</size>\n\nProvide API interface customer" <<24>> as 24
+  rectangle "==Customer Model\n<size:10>[Component: ASP.NET Core Rest Model]</size>\n\nProvide data model of login user and interface to database" <<26>> as 26
+  rectangle "==Service\n<size:10>[Component: ASP.NET Core Rest Service]</size>\n\nHanding when called" <<36>> as 36
+}
+package "Web Application\n[Container: JS and VueJS]" {
+  rectangle "==Customer Profile Detail\n<size:10>[Component: VueJS and JS]</size>\n\nRun application code Customer Profile Detail Browser" <<6>> as 6
+}
+24 .[#707070,thickness=2].> 36 : "Mapping Route get and update customer profile by Id"
+26 .[#707070,thickness=2].> 43 : "Read from and Write to"
+6 .[#707070,thickness=2].> 24 : "Makes API calls to\n<size:8>[HTTP]</size>"
+36 .[#707070,thickness=2].> 26 : "Call model Customer"
+@enduml

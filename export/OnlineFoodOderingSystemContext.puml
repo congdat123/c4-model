@@ -1,0 +1,43 @@
+@startuml(id=OnlineFoodOderingSystemContext)
+title Online Food Ordering System - System Context
+
+skinparam {
+  shadowing false
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+hide stereotype
+top to bottom direction
+skinparam rectangle<<1>> {
+  BackgroundColor #08427b
+  FontColor #ffffff
+  BorderColor #052e56
+}
+skinparam rectangle<<2>> {
+  BackgroundColor #999999
+  FontColor #ffffff
+  BorderColor #6b6b6b
+}
+skinparam rectangle<<3>> {
+  BackgroundColor #999999
+  FontColor #ffffff
+  BorderColor #6b6b6b
+}
+skinparam rectangle<<4>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+rectangle "==User\n<size:10>[Person]</size>\n\nA user wants to place an order, has a personal account of the website" <<1>> as 1
+package "Enterprise" {
+  rectangle "==Notification Sending System\n<size:10>[Software System]</size>\n\nWhen a customer places an order, the system sends a notification" <<3>> as 3
+  rectangle "==Online Food Ordering System\n<size:10>[Software System]</size>\n\nAllows users to view food, personal, and order information" <<4>> as 4
+  rectangle "==Payment\n<size:10>[Software System]</size>\n\nProvide payment methods" <<2>> as 2
+}
+3 .[#707070,thickness=2].> 1 : "Send Notification to"
+4 .[#707070,thickness=2].> 3 : "send Notification using"
+4 .[#707070,thickness=2].> 2 : "Payment request"
+1 .[#707070,thickness=2].> 4 : "Roles: manager and user"
+@enduml

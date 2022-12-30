@@ -1,0 +1,51 @@
+@startuml(id=GetSliderByIdComponent)
+title Online Food Ordering System - API Application - Components
+
+skinparam {
+  shadowing false
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+hide stereotype
+top to bottom direction
+skinparam rectangle<<14>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+skinparam rectangle<<36>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+skinparam rectangle<<37>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+skinparam rectangle<<38>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+skinparam database<<43>> {
+  BackgroundColor #08427b
+  FontColor #ffffff
+  BorderColor #052e56
+}
+database "==Database\n<size:10>[Container: SQL Server 2019]</size>\n\nStores data customer states" <<43>> as 43
+package "API Application\n[Container: C# and ASP.NET core]" {
+  rectangle "==Service\n<size:10>[Component: ASP.NET Core Rest Service]</size>\n\nHanding when called" <<36>> as 36
+  rectangle "==Silder Model\n<size:10>[Component: ASP.NET Core Rest Model]</size>\n\nProvide data model of Slider and interface to database" <<38>> as 38
+  rectangle "==Slider Controller\n<size:10>[Component: ASP.NET Core Rest Controller]</size>\n\nProvide API interface Slider" <<37>> as 37
+}
+package "Web Application\n[Container: JS and VueJS]" {
+  rectangle "==Slider Manage View\n<size:10>[Component: VueJS and JS]</size>\n\nRun application code Slider Manage Browser" <<14>> as 14
+}
+36 .[#707070,thickness=2].> 38 : "Call Model Slider"
+38 .[#707070,thickness=2].> 43 : "Read from and Write to"
+37 .[#707070,thickness=2].> 36 : "Mapping Route Get Slider By Id"
+14 .[#707070,thickness=2].> 37 : "Makes API calls to\n<size:8>[HTTP]</size>"
+@enduml

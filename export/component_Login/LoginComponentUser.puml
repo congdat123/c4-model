@@ -1,0 +1,58 @@
+@startuml(id=LoginComponentUser)
+title Online Food Ordering System - API Application - Components
+
+skinparam {
+  shadowing false
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+hide stereotype
+top to bottom direction
+skinparam rectangle<<23>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+skinparam database<<34>> {
+  BackgroundColor #08427b
+  FontColor #ffffff
+  BorderColor #052e56
+}
+skinparam rectangle<<25>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+skinparam rectangle<<4>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+skinparam rectangle<<27>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+skinparam rectangle<<17>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+database "==Database\n<size:10>[Container: SQL Server 2019]</size>\n\nStores data customer states" <<34>> as 34
+package "API Application\n[Container: C# and ASP.NET Core]" {
+  rectangle "==Customer Model\n<size:10>[Component: ASP.NET Core Rest Model]</size>\n\nProvide data model of login user and interface to database" <<25>> as 25
+  rectangle "==Login Model\n<size:10>[Component: ASP.NET Core Rest Model]</size>\n\nProvide cached data model of login by user" <<27>> as 27
+  rectangle "==Login User Controller\n<size:10>[Component: ASP.NET Core Rest Controller]</size>\n\nProvide API interface check token user" <<17>> as 17
+  rectangle "==Service\n<size:10>[Component: ASP.NET Core Rest Service]</size>\n\nHanding when called" <<23>> as 23
+}
+package "Web Application\n[Container: JS and VueJS]" {
+  rectangle "==Login User View\n<size:10>[Component: VueJS and JS]</size>\n\nRun application code login browser" <<4>> as 4
+}
+25 .[#707070,thickness=2].> 34 : "Read from and Write to"
+17 .[#707070,thickness=2].> 23 : "Mapping Route Login"
+4 .[#707070,thickness=2].> 17 : "Makes API calls to\n<size:8>[HTTP]</size>"
+23 .[#707070,thickness=2].> 25 : "Call model Customer"
+23 .[#707070,thickness=2].> 27 : "Call model Login"
+@enduml

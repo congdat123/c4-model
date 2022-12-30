@@ -1,0 +1,70 @@
+@startuml(id=ComponentsWebApplication)
+title Online Food Ordering System - Web Application - Components
+
+skinparam {
+  shadowing false
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+hide stereotype
+top to bottom direction
+skinparam rectangle<<22>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+skinparam rectangle<<11>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+skinparam rectangle<<12>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+skinparam rectangle<<6>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+skinparam rectangle<<7>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+skinparam rectangle<<8>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+skinparam rectangle<<9>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+skinparam rectangle<<10>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+}
+rectangle "==API Application\n<size:10>[Container: C# and ASP.NET Core]</size>\n\nProvides of online odering system functionality via /HTTPS API.'C# and ASP.NET core'" <<22>> as 22
+package "Web Application\n[Container: apache]" {
+  rectangle "==Bill View\n<size:10>[Component: VueJS]</size>\n\nCustomer data processing" <<12>> as 12
+  rectangle "==Check Out View\n<size:10>[Component: VueJS]</size>\n\nCustomer data processing" <<9>> as 9
+  rectangle "==Detail Product View\n<size:10>[Component: VueJS]</size>\n\nCustomer data processing" <<10>> as 10
+  rectangle "==Login View\n<size:10>[Component: VueJS]</size>\n\nCustomer data processing" <<6>> as 6
+  rectangle "==Product View\n<size:10>[Component: VueJS]</size>\n\nCustomer data processing" <<8>> as 8
+  rectangle "==Profile Account View\n<size:10>[Component: VueJS]</size>\n\nCustomer data processing" <<11>> as 11
+  rectangle "==Register View\n<size:10>[Component: VueJS]</size>\n\nCustomer data processing" <<7>> as 7
+}
+12 .[#707070,thickness=2].> 22 : "Makes API calls to\n<size:8>[HTTP]</size>"
+9 .[#707070,thickness=2].> 22 : "Makes API calls to\n<size:8>[HTTP]</size>"
+10 .[#707070,thickness=2].> 22 : "Makes API calls to\n<size:8>[HTTP]</size>"
+6 .[#707070,thickness=2].> 22 : "Makes API calls to\n<size:8>[HTTP]</size>"
+8 .[#707070,thickness=2].> 22 : "Makes API calls to\n<size:8>[HTTP]</size>"
+11 .[#707070,thickness=2].> 22 : "Makes API calls to\n<size:8>[HTTP]</size>"
+7 .[#707070,thickness=2].> 22 : "Makes API calls to\n<size:8>[HTTP]</size>"
+@enduml

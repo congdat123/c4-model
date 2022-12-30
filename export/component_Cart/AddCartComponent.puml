@@ -1,0 +1,58 @@
+@startuml(id=AddCartComponent)
+title Online Food Ordering System - API Application - Components
+
+skinparam {
+  shadowing false
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+hide stereotype
+top to bottom direction
+skinparam rectangle<<36>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+skinparam rectangle<<27>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+skinparam rectangle<<28>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+skinparam rectangle<<29>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+skinparam rectangle<<8>> {
+  BackgroundColor #438dd5
+  FontColor #000000
+  BorderColor #2e6295
+}
+skinparam database<<43>> {
+  BackgroundColor #08427b
+  FontColor #ffffff
+  BorderColor #052e56
+}
+database "==Database\n<size:10>[Container: SQL Server 2019]</size>\n\nStores data customer states" <<43>> as 43
+package "API Application\n[Container: C# and ASP.NET core]" {
+  rectangle "==Add Cart Model\n<size:10>[Component: ASP.NET Core Rest Model]</size>\n\nProvide cached data model of cart by customer" <<29>> as 29
+  rectangle "==Cart Controller\n<size:10>[Component: ASP.NET Core Rest Controller]</size>\n\nProvide API interface Cart" <<27>> as 27
+  rectangle "==Cart Model\n<size:10>[Component: ASP.NET Core Rest Model]</size>\n\nProvide data model of cart and interfce to database" <<28>> as 28
+  rectangle "==Service\n<size:10>[Component: ASP.NET Core Rest Service]</size>\n\nHanding when called" <<36>> as 36
+}
+package "Web Application\n[Container: JS and VueJS]" {
+  rectangle "==Product Detail View\n<size:10>[Component: VueJS and JS]</size>\n\nProduct Data Processing" <<8>> as 8
+}
+27 .[#707070,thickness=2].> 36 : "Mapping Route Add Cart"
+28 .[#707070,thickness=2].> 43 : "Read from and Write to"
+8 .[#707070,thickness=2].> 27 : "Makes API calls to\n<size:8>[HTTP]</size>"
+36 .[#707070,thickness=2].> 29 : "Call Model Add Cart"
+36 .[#707070,thickness=2].> 28 : "Call Model Cart"
+@enduml

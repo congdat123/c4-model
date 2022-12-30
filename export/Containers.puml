@@ -1,0 +1,65 @@
+@startuml(id=Containers)
+title Online Food Ordering System - Containers
+
+skinparam {
+  shadowing false
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+hide stereotype
+top to bottom direction
+skinparam rectangle<<22>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+skinparam rectangle<<1>> {
+  BackgroundColor #08427b
+  FontColor #ffffff
+  BorderColor #052e56
+}
+skinparam rectangle<<2>> {
+  BackgroundColor #999999
+  FontColor #ffffff
+  BorderColor #6b6b6b
+}
+skinparam rectangle<<13>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+skinparam rectangle<<3>> {
+  BackgroundColor #999999
+  FontColor #ffffff
+  BorderColor #6b6b6b
+}
+skinparam rectangle<<5>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+skinparam database<<21>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+rectangle "==Notification Sending System\n<size:10>[Software System]</size>\n\nWhen a customer places an order, the system sends a notification" <<3>> as 3
+rectangle "==Payment\n<size:10>[Software System]</size>\n\nProvide payment methods" <<2>> as 2
+rectangle "==User\n<size:10>[Person]</size>\n\nA user wants to place an order, has a personal account of the website" <<1>> as 1
+package "Online Food Ordering System\n[Software System]" {
+  rectangle "==API Application\n<size:10>[Container: C# and ASP.NET Core]</size>\n\nProvides of online odering system functionality via /HTTPS API.'C# and ASP.NET core'" <<22>> as 22
+  rectangle "==Admin Application\n<size:10>[Container: JS and VueJS]</size>\n\nInformation management" <<13>> as 13
+  database "==Database\n<size:10>[Container: SQL Server]</size>\n\nStores user registration information, hashed authentication credentials, access logs, etc.'SQL Server Database' 'Database'" <<21>> as 21
+  rectangle "==Web Application\n<size:10>[Container: apache]</size>\n\nDelivers the static content and the online ordering single-page application. 'JS and VueJS'" <<5>> as 5
+}
+22 .[#707070,thickness=2].> 21 : "Read from and Write to"
+22 .[#707070,thickness=2].> 3 : "send notification using"
+13 .[#707070,thickness=2].> 22 : "Makes API calls to\n<size:8>[HTTP]</size>"
+3 .[#707070,thickness=2].> 1 : "Send Notification to"
+1 .[#707070,thickness=2].> 13 : "manager"
+1 .[#707070,thickness=2].> 5 : "user"
+5 .[#707070,thickness=2].> 22 : "Makes API calls to\n<size:8>[HTTP]</size>"
+5 .[#707070,thickness=2].> 2 : "Payment request"
+@enduml
