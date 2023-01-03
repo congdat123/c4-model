@@ -15,7 +15,7 @@ skinparam rectangle<<22>> {
   FontColor #ffffff
   BorderColor #2e6295
 }
-skinparam rectangle<<1>> {
+skinparam person<<1>> {
   BackgroundColor #08427b
   FontColor #ffffff
   BorderColor #052e56
@@ -47,7 +47,7 @@ skinparam database<<21>> {
 }
 rectangle "==Notification Sending System\n<size:10>[Software System]</size>\n\nWhen a customer places an order, the system sends a notification" <<3>> as 3
 rectangle "==Payment\n<size:10>[Software System]</size>\n\nProvide payment methods" <<2>> as 2
-rectangle "==User\n<size:10>[Person]</size>\n\nA user wants to place an order, has a personal account of the website" <<1>> as 1
+person "==User\n<size:10>[Person]</size>\n\nA user wants to place an order, has a personal account of the website" <<1>> as 1
 package "Online Food Ordering System\n[Software System]" {
   rectangle "==API Application\n<size:10>[Container: C# and ASP.NET Core]</size>\n\nProvides of online odering system functionality via /HTTPS API.'C# and ASP.NET core'" <<22>> as 22
   rectangle "==Admin Application\n<size:10>[Container: JS and VueJS]</size>\n\nInformation management" <<13>> as 13
