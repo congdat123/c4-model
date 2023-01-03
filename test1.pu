@@ -1,3 +1,0 @@
-@startuml
-Browser -> Controller: Send Request
-@enduml
