@@ -1,0 +1,25 @@
+@startuml
+!theme cerulean
+actor User #438dd5
+participant "Login Page" as Login_page
+participant "Login Controller" as login_controller
+
+User -> Login_page :Visit 
+User -> Login_page :Enter a username/password
+User -> Login_page :Login
+Login_page -> login_controller :Send username/password hash
+Database -> login_controller :read data
+login_controller -> login_controller :check user password
+login_controller -> login_controller :isValid
+
+alt Login data is correct
+	login_controller --> Login_page :User login accepted
+	Login_page -> Login_page :init token
+	Login_page -> Login_page :Redirect home page
+	Login_page --> User :Successful login (message)
+else Login data is incorrect
+	login_controller --> Login_page :User login rejected
+	Login_page -> Login_page :Redirect
+	Login_page --> User :Clear the password field and username field
+end
+@enduml
