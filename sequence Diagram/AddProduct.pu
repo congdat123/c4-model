@@ -1,0 +1,22 @@
+@startuml
+!theme cerulean
+actor Admin #438dd5
+participant "Product Manager View" as product_manager_view
+participant "Product Controller" as product_controller
+
+Admin -> product_manager_view :1. Enter product information
+Admin -> product_manager_view :2. Click on "submit"
+product_manager_view -> product_manager_view : isLogin
+
+alt Yes
+	product_manager_view --> product_controller :3.1. call HTTP
+	product_controller -> Service :4. Mapping addProduct()
+	Service --> Repository :5. Find nameProduct
+	Repository -> Service :6. nameProduct
+	Service --> Repository :7. new product
+    Database --> Service :8. product
+    Service --> Repository :9. Save
+else No
+	product_manager_view ->product_manager_view :3.2. Cannot Dialog()
+end
+@enduml
