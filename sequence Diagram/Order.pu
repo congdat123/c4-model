@@ -9,7 +9,7 @@ User -> cart_view :2. Click on "order
 cart_view -> cart_view :IsLogin
 alt Yes
 	cart_view --> bill_controller :3.1. Order
-	bill_controller -> Service :4. Order
+	bill_controller -> Service :4. Mapping Order()
 	Service --> Repository :5. Find User
 	Repository -> Service :6. User
 	Service --> Repository :7. Find Product

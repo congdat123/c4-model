@@ -9,7 +9,7 @@ product_detail_view -> product_detail_view :isLogin
 
 alt Yes
 	product_detail_view --> cart_controller :2.1. Add new item
-	cart_controller -> Service :3. Add new item
+	cart_controller -> Service :3. Mapping AddNewItem()
 	Service --> Repository :4. Find Cart Id
 	Repository -> Service :5. Cart
 	Service --> Repository :6. Find Product Id
