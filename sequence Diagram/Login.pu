@@ -1,0 +1,25 @@
+@startuml
+!theme cerulean
+actor User #438dd5
+participant "Login Page" as Login_page
+participant "Login Controller" as login_controller
+
+User -> Login_page :1. Enter a username/password
+User -> Login_page :2. Click Login
+Login_page -> login_controller :3. Send username/password hash
+Database -> login_controller :4. Read data
+login_controller -> login_controller :isValid
+login_controller -> login_controller :5. check user password
+
+alt Login data is correct
+	login_controller --> Login_page :6.1. User login accepted
+	Login_page -> Login_page :7. init token
+	Login_page -> Login_page :8.1. Redirect home page
+	Login_page --> User :8.1.1 Successful login (message)
+else Login data is incorrect
+	login_controller --> Login_page :6.2. User login rejected
+	Login_page -> Login_page :8.2. Redirect
+	Login_page --> User :8.2.1. Clear the password field and username field
+end
+Login_page --> User :9. Display Login
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+!theme cerulean
+actor User #438dd5
+participant "Register Page" as Register_page
+participant "Register Controller" as Register_controller
+
+User -> Register_page :1. Enter a username, phone, email, password
+User -> Register_page :2. Click Register
+Register_page -> Register_controller :3. Send username, phone, email, password hash
+Repository -> Register_controller :5. Read data
+Database -> Repository :4. Read data
+Register_controller -> Register_controller :6. isValid
+Register_controller -> Register_controller :7. Check username, phone, email, password
+
+alt Register data is correct
+	Register_controller --> Register_page :8.1. User Register accepted
+	Register_controller --> Repository :9. Send database
+	Repository --> Database :10. Save user in database
+	Register_page -> Register_page :11.1. Redirect Login page
+	Register_page --> User :11.1.1.Successful Register (message)
+else Register data is incorrect
+	Register_controller --> Register_page :8.2. User Register rejected
+	Register_page -> Register_page :11.2. Redirect
+	Register_page --> User :11.1.2. Clear the password field, username field, phone field, mail field 
+end
+@enduml

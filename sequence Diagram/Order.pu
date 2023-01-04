@@ -1,0 +1,23 @@
+@startuml
+!theme cerulean
+actor User #438dd5
+participant "Cart View" as cart_view
+participant "Bill Controller" as bill_controller
+
+User -> cart_view :1. Enter address
+User -> cart_view :2. Click on "order
+cart_view -> cart_view :IsLogin
+alt Yes
+	cart_view --> bill_controller :3.1. Order
+	bill_controller -> Service :4. Order
+	Service --> Repository :5. Find User
+	Repository -> Service :6. User
+	Service --> Repository :7. Find Product
+	Repository -> Service :8. Product
+    Service --> Database :9. New Bill
+    Database --> Service :10. Bill
+    Service --> Repository :11. Save
+else No
+	cart_view ->cart_view :4.2. Can't Check Out Dialog()
+end
+@enduml
